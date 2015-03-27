@@ -6,7 +6,6 @@
 
 <p><%= link_to "Edit", edit_post_path(@post) %></p>
 <p><%= link_to "Delete", post_path(@post),
-                          :data => {:confirm => "Are you sure?",
-                                      :method => "delete"} %></p>
+                          :data => {:method => "delete"} %></p>
 
 <p><%= link_to "Return to posts", posts_path %></p>

@@ -5,7 +5,6 @@ describe "the delete post process" do
     post = Post.create(:title => 'Test post', :body => 'Test body')
     visit post_path(post)
     click_on 'Delete'
-    click_on 'OK'
     expect(page).to have_content 'successfully'
   end
 end

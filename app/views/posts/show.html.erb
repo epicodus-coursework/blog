@@ -4,15 +4,18 @@
 
 <p><%= @post.body %></p>
 
-<p><%= link_to "Edit", edit_post_path(@post) %></p>
-<p><%= link_to "Delete", post_path(@post),
-                          :data => {:method => "delete"} %></p>
+<p><%= link_to "Edit post", edit_post_path(@post) %></p>
+<p><%= link_to "Delete post", post_path(@post),
+                            :data => {:method => "delete"} %></p>
 
 <% if @post.comments.any? %>
   <ul>
       <% @post.comments.each do |comment| %>
         <li>
           <%= comment.body %>
+          <%= link_to "Edit comment", edit_post_comment_path(@post, comment) %>
+          <%= link_to "Delete comment", post_comment_path(@post, comment),
+                                      :data => {:method => "delete"} %>
         </li>
       <% end %>
   </ul>

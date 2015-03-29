@@ -9,6 +9,18 @@
 <body>
 
   <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Home', root_path %></li>
+        <% if current_user == nil %>
+          <li><%= link_to "Register", new_user_path %></li>
+          <li><%= link_to "Log in", new_session_path %> </li>
+        <% else %>
+          <li><a>Logged in as <strong><%= current_user.email %></strong></a></li>
+          <li><%= link_to "Log out", session_path(session), :data => {:method => "delete"} %></li>
+        <% end %>
+      </ul>
+    </nav>
 
     <%= flash[:alert] %>
     <%= flash[:notice] %>

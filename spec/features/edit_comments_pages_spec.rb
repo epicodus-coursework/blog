@@ -2,25 +2,25 @@ require 'rails_helper'
 
 describe "the edit comment process" do
   it "edits a comment" do
-    post = Post.create(:title => 'Test post', :body => 'Test body')
-    visit posts_path
-    click_on 'Test post'
-    click_on 'Add a comment'
-    fill_in 'Body', :with => 'Test body'
-    click_on 'Create Comment'
+    user = FactoryGirl.create(:user)
+    post = FactoryGirl.create(:post)
+    comment = FactoryGirl.create(:comment)
+    log_in(user)
+    add_post(post)
+    add_comment(comment)
     click_on 'Edit comment'
     fill_in 'Body', :with => 'New comment'
     click_on "Update Comment"
     expect(page).to have_content 'successfully'
   end
 
-  it "gives an error when no title is entered" do
-    post = Post.create(:title => 'Test post', :body => 'Test body')
-    visit posts_path
-    click_on 'Test post'
-    click_on 'Add a comment'
-    fill_in 'Body', :with => 'Test body'
-    click_on 'Create Comment'
+  it "gives an error when no body is entered" do
+    user = FactoryGirl.create(:user)
+    post = FactoryGirl.create(:post)
+    comment = FactoryGirl.create(:comment)
+    log_in(user)
+    add_post(post)
+    add_comment(comment)
     click_on 'Edit comment'
     fill_in 'Body', :with => ''
     click_on "Update Comment"

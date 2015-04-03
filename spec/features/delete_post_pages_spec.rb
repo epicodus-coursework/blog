@@ -2,9 +2,11 @@ require 'rails_helper'
 
 describe "the delete post process" do
   it "deletes a post" do
-    post = Post.create(:title => 'Test post', :body => 'Test body')
-    visit post_path(post)
-    click_on 'Delete'
+    user = FactoryGirl.create(:user)
+    post = FactoryGirl.build(:post)
+    log_in(user)
+    add_post(post)
+    click_on 'Delete post'
     expect(page).to have_content 'successfully'
   end
 end

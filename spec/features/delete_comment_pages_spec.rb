@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe "the edit comment process" do
-  it "edits a comment" do
-    post = Post.create(:title => 'Test post', :body => 'Test body')
-    visit posts_path
-    click_on 'Test post'
-    click_on 'Add a comment'
-    fill_in 'Body', :with => 'Test body'
-    click_on 'Create Comment'
+describe "the delete comment process" do
+  it "deletes a comment" do
+    user = FactoryGirl.create(:user)
+    post = FactoryGirl.build(:post)
+    comment = FactoryGirl.build(:comment)
+    log_in(user)
+    add_post(post)
+    add_comment(comment)
     click_on 'Delete comment'
     expect(page).to have_content 'successfully'
   end

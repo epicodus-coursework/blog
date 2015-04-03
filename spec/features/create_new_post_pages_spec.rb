@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe "the create new post process" do
   it "creates a new post" do
-    visit posts_path
+    user = FactoryGirl.create(:user)
+    log_in(user)
     click_on 'Create a new post'
     fill_in 'Title', :with => 'Test post'
     fill_in 'Body', :with => 'Test body'

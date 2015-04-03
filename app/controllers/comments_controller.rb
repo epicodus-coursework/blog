@@ -8,10 +8,14 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     if @comment.save
+      respond_to do |format|
+        format.html { redirect_to post_path(@comment.post) }
+        format.js
+      end
       flash[:notice] = "Comment successfully added!"
-      redirect_to post_path(@comment.post)
     else
-      render :new
+      flash[:alert] = "There was a problem adding your comment."
+      redirect_to post_path(@comment.post)
     end
   end
 

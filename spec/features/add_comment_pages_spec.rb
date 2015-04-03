@@ -20,6 +20,6 @@ describe "add comment process" do
     click_on 'Add a comment'
     fill_in 'Body', :with => ''
     click_on 'Create Comment'
-    expect(page). to have_content 'errors'
+    expect(page). to have_content 'problem'
   end
 end
